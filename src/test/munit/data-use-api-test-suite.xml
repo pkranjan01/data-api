@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="data-use-api-test-suite.xml" />
+	<munit:test name="data-use-api-test-suite-get:\data:data-use-api-configTest" doc:id="9702eada-591a-4c8a-bed3-aaf620ab375a" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="8a53a544-6e8f-49ed-a83a-8d1dd4fc34d3" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Request" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="8e49d04b-209f-4ec3-aa8d-ef661c9b6548" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value='#[{&#10;  data: [&#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2019,&#10;      Year: "2019",&#10;      Population: 328239523,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2018,&#10;      Year: "2018",&#10;      Population: 327167439,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2017,&#10;      Year: "2017",&#10;      Population: 325719178,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2016,&#10;      Year: "2016",&#10;      Population: 323127515,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2015,&#10;      Year: "2015",&#10;      Population: 321418821,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2014,&#10;      Year: "2014",&#10;      Population: 318857056,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2013,&#10;      Year: "2013",&#10;      Population: 316128839,&#10;      "Slug Nation": "united-states"&#10;    }&#10;  ],&#10;  source: [&#10;    {&#10;      measures: [&#10;        "Population"&#10;      ],&#10;      annotations: {&#10;        source_name: "Census Bureau",&#10;        source_description: "The American Community Survey (ACS) is conducted by the US Census and sent to a portion of the population every year.",&#10;        dataset_name: "ACS 1-year Estimate",&#10;        dataset_link: "http://www.census.gov/programs-surveys/acs/",&#10;        table_id: "B01003",&#10;        topic: "Diversity",&#10;        subtopic: "Demographics"&#10;      },&#10;      name: "acs_yg_total_population_1",&#10;      substitutions: []&#10;    }&#10;  ]&#10;}]' />
+					<munit-tools:attributes value='#[{"queryParams": {"drilldowns":"Nation","measures":"Population"}}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="f3cac4ba-9b30-409a-a0f0-84eee72cc426" />
+			<flow-ref doc:name="Flow-ref to get:\data:data-use-api-config" doc:id="d2c4b94a-23b2-49c6-809e-ee84034da0df" name="get:\data:data-use-api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="1a4568ca-8608-460b-80bb-5c18859e6531" is='#[MunitTools::equalTo({&#10;  data: [&#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2019,&#10;      Year: "2019",&#10;      Population: 328239523,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2018,&#10;      Year: "2018",&#10;      Population: 327167439,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2017,&#10;      Year: "2017",&#10;      Population: 325719178,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2016,&#10;      Year: "2016",&#10;      Population: 323127515,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2015,&#10;      Year: "2015",&#10;      Population: 321418821,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2014,&#10;      Year: "2014",&#10;      Population: 318857056,&#10;      "Slug Nation": "united-states"&#10;    }, &#10;    {&#10;      "ID Nation": "01000US",&#10;      Nation: "United States",&#10;      "ID Year": 2013,&#10;      Year: "2013",&#10;      Population: 316128839,&#10;      "Slug Nation": "united-states"&#10;    }&#10;  ],&#10;  source: [&#10;    {&#10;      measures: [&#10;        "Population"&#10;      ],&#10;      annotations: {&#10;        source_name: "Census Bureau",&#10;        source_description: "The American Community Survey (ACS) is conducted by the US Census and sent to a portion of the population every year.",&#10;        dataset_name: "ACS 1-year Estimate",&#10;        dataset_link: "http://www.census.gov/programs-surveys/acs/",&#10;        table_id: "B01003",&#10;        topic: "Diversity",&#10;        subtopic: "Demographics"&#10;      },&#10;      name: "acs_yg_total_population_1",&#10;      substitutions: []&#10;    }&#10;  ]&#10;})]' expression="#[payload]" message="not match payload"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
